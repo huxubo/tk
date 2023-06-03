@@ -1,0 +1,30 @@
+name: GetOpenToken
+
+on: 
+  workflow_dispatch:
+  schedule:
+      - cron:  '* */2 * * *' # UTC Time
+
+jobs:
+  Generate_Token:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+      - name: permissions
+        id: ok
+        run: chmod +x ./generate.sh
+      - name: start
+        run: ./generate.sh
+
+      - name: Update token
+        uses: EndBug/add-and-commit@main
+        with:
+          default_author: github_actions
+          message: 'Update token'
+          add: "['./token.txt', './Opentoken.json']"
+          
+      
