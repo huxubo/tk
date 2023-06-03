@@ -3,7 +3,7 @@ name: GetOpenToken
 on: 
   workflow_dispatch:
   schedule:
-      - cron:  '* */2 * * *' # UTC Time
+      - cron:  '0 */2 * * *' # UTC Time
 
 jobs:
   Generate_Token:
